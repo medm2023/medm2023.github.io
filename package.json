@@ -10,6 +10,7 @@
     "deploy": "gh-pages -d .output/public"
   },
   "devDependencies": {
+    "@modyfi/vite-plugin-yaml": "^1.1.0",
     "@nuxt/devtools": "latest",
     "@types/node": "^18.17.3",
     "@vueuse/core": "^10.4.1",

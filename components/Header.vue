@@ -1,24 +1,6 @@
 <script setup>
-const config = reactive({
-  title: 'MeDM<div>Mediating Image Diffusion Models for Video-to-Video Translation with Temporal Correspondence Guidance</div>',
-  venue: 'AAAI 2024',
-  authors: [
-    { text: 'Ernie Chu', homepage: 'https://ernestchu.github.io', mark: '' },
-    { text: 'Tzuhsuan Huang', homepage: '', mark: '' },
-    { text: 'Shuo-Yen Lin', homepage: '', mark: '' },
-    { text: 'Jun-Cheng Chen', homepage: 'https://www.citi.sinica.edu.tw/pages/pullpull', mark: '' },
-  ],
-  affiliations: [
-    { text: 'Research Center for Information Technology Innovation, Academia Sinica', mark: '' }
-  ],
-  links: [
-    { text: 'Paper', url: 'https://doi.org/10.1609/aaai.v38i2.27899', icon: ['ai', 'ai-doi'] },
-    { text: 'Poster', url: '/medm-poster.pdf', icon: ['fa-regular', 'fa-file-pdf'] },
-    { text: 'arXiv', url: 'https://arxiv.org/abs/2308.10079', icon: ['ai', 'ai-arxiv'] },
-    { text: 'Code', url: 'https://github.com/aiiu-lab/MeDM', icon: ['fa-brands', 'fa-github'] },
-    { text: 'Citation', url: 'https://github.com/aiiu-lab/MeDM?tab=readme-ov-file#citation', icon: ['fa-brands', 'fa-github'] },
-  ],
-})
+import configs from 'assets/config.yaml'
+const config = configs.header
 
 </script>
 
@@ -59,18 +41,22 @@ const config = reactive({
   margin: 0 auto;
   padding: 2rem
 }
+
 .title {
   font-weight: 500;
   font-size: 2.1rem;
   text-align: center;
   margin-bottom: 1rem;
 }
+
 .venue {
   font-weight: 500;
   font-size: 1.5rem;
   text-align: center;
 }
-.author-list, .affiliation-list {
+
+.author-list,
+.affiliation-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -78,7 +64,8 @@ const config = reactive({
   font-size: 1.2rem;
   text-align: center;
 }
-.author-list > div {
+
+.author-list>div {
   white-space: nowrap;
 }
 
@@ -88,11 +75,13 @@ const config = reactive({
     color: var(--color-text-mute);
   }
 }
+
 @media (min-width: 850px) {
   .title :deep(div) {
     display: inline;
     font-weight: inherit;
   }
+
   .title :deep(div:before) {
     content: ": ";
     font-weight: inherit;
@@ -107,29 +96,35 @@ const config = reactive({
   gap: 1rem 2rem;
   font-size: 1.2rem;
 }
-.link-list > a:after {
+
+.link-list>a:after {
   all: initial;
 }
-.link-list > a > div {
+
+.link-list>a>div {
   background-color: var(--color-background-accent);
   padding: 0.2rem 1.3rem;
   border-radius: 100px;
   color: var(--color-text-accent);
   transition: transform .2s;
 }
+
 @media (hover: hover) {
-  .link-list > a > div:hover {
+  .link-list>a>div:hover {
     transform: scale(1.05);
   }
 }
-.link-list > a > div:active {
+
+.link-list>a>div:active {
   transform: scale(1.05);
 }
+
 @media (prefers-color-scheme: dark) {
-  .link-list > a > div {
+  .link-list>a>div {
     border: 1px solid white;
   }
 }
+
 i {
   margin-right: 0.1rem;
 }
