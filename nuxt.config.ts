@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
   app: {
-    buildAssetsDir: 'assets', // don't use "_" at the begining of the folder name to avoids nojkill conflict
+    buildAssetsDir: 'custom_assets', // don't use "_" at the begining of the folder name to avoids nojkill conflict
   },
   vite: {
     plugins: [ViteYaml()],

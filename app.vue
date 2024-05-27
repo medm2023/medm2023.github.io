@@ -1,5 +1,5 @@
 <script setup>
-import configs from 'assets/config.yaml'
+import configs from '~/assets/config.yaml'
 
 useHead(configs.app.head)
 useSeoMeta(configs.app.meta)
