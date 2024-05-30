@@ -67,11 +67,11 @@ function shuffle(array) {
       '/videos/girl/sde-medm',
       '/videos/girl/cn-medm'
     ]" :captions="[
-        'SDEdit',
-        'ControlNet',
-        'SDEdit + MeDM',
-        'ControlNet + MeDM',
-      ]" />
+      'SDEdit',
+      'ControlNet',
+      'SDEdit + MeDM',
+      'ControlNet + MeDM',
+    ]" />
 
     <div class="section-title">Architecture</div>
     <div class="image">
@@ -90,34 +90,36 @@ function shuffle(array) {
       occlusions and position information (depth, normal). We use the lineart derived from the normal maps as the input
       conditions to ControlNet. 3D assets from <a href="http://sintel.is.tue.mpg.de" target="_blank">MPI Sintel</a>.
     </p>
-    <Gallery :urls="shuffle([
-      '/videos/rendering/ambush_7',
-      '/videos/rendering/bandage_2',
-      '/videos/rendering/market_5',
-      '/videos/rendering/shaman_3',
-      '/videos/rendering/cave_2',
-      '/videos/rendering/market_6',
-      '/videos/rendering/temple_2',
-    ])" />
+    <ClientOnly fallback-tag="span" fallback="Loading gallery...">
+      <Gallery :urls="shuffle([
+        '/videos/rendering/ambush_7',
+        '/videos/rendering/bandage_2',
+        '/videos/rendering/market_5',
+        '/videos/rendering/shaman_3',
+        '/videos/rendering/cave_2',
+        '/videos/rendering/market_6',
+        '/videos/rendering/temple_2',
+      ])" />
+    </ClientOnly>
 
     <p>
       In addition, MeDM can also begin with adding noise to the pre-rendered videos and perform the denoising process
-      from
-      0.5T step following SDEdit. The generated video should be similar to the original animation and incorporating the
-      realistic prior from the pre-trained DM (The difference is especially significant in complex texture, such as
-      hair).
-      More quantitative results, including comparison with prior works, can be found in our <a href="/medm.pdf"
-        target="_blank">paper</a>.
+      from 0.5T step following SDEdit. The generated video should be similar to the original animation and incorporating
+      the realistic prior from the pre-trained DM (The difference is especially significant in complex texture, such as
+      hair). More quantitative results, including comparison with prior works, can be found in our
+      <a href="/medm.pdf" target="_blank">paper</a>.
     </p>
-    <Gallery :urls="shuffle([
-      '/videos/assistive-rendering/ambush_7',
-      '/videos/assistive-rendering/bandage_2',
-      '/videos/assistive-rendering/market_5',
-      '/videos/assistive-rendering/ambush_4',
-      '/videos/assistive-rendering/ambush_6',
-      '/videos/assistive-rendering/shaman_2',
-      '/videos/assistive-rendering/temple_3',
-    ])" />
+    <ClientOnly fallback-tag="span" fallback="Loading gallery...">
+      <Gallery :urls="shuffle([
+        '/videos/assistive-rendering/ambush_7',
+        '/videos/assistive-rendering/bandage_2',
+        '/videos/assistive-rendering/market_5',
+        '/videos/assistive-rendering/ambush_4',
+        '/videos/assistive-rendering/ambush_6',
+        '/videos/assistive-rendering/shaman_2',
+        '/videos/assistive-rendering/temple_3',
+      ])" />
+    </ClientOnly>
     <div class="section-title">Text-Guided Video Edit</div>
     <p>
       MeDM also performs well without high precision optical flows. We demonstrate this by applying text-guided video
@@ -125,38 +127,48 @@ function shuffle(array) {
         2016</a>.
     </p>
 
-    <Gallery :urls="[
-      '/videos/edit/bear',
-      '/videos/edit/blackswan',
-      '/videos/edit/boat',
-      '/videos/edit/flamingo',
-    ]" :captions="[
-        'Prompt: a panda in Arctic, snow, ice, iceberg',
-        'Prompt: a white swan in the ocean, snowing',
-        'Prompt: a boat on fire',
-        'Prompt: flamingos in outer space',
-      ]" />
+    <ClientOnly fallback-tag="span" fallback="Loading gallery...">
+      <template v-for="pair in [shuffle([
+        {
+          url: '/videos/edit/bear',
+          caption: 'Prompt: a panda in Arctic, snow, ice, iceberg',
+        },
+        {
+          url: '/videos/edit/blackswan',
+          caption: 'Prompt: a white swan in the ocean, snowing',
+        },
+        {
+          url: '/videos/edit/boat',
+          caption: 'Prompt: a boat on fire',
+        },
+        {
+          url: '/videos/edit/flamingo',
+          caption: 'Prompt: flamingos in outer space',
+        },
+      ])]">
+        <Gallery :urls="pair.map(p => p.url)" :captions="pair.map(p => p.caption)" />
+      </template>
+    </ClientOnly>
 
     <div class="section-title">Video Anonymization</div>
     <p>
       Finally, we demonstrate the versatility of MeDM. For example, MeDM can perform video anonymization out-of-the-box.
-      We
-      leverage the fact that human visual perception exhibits a remarkable sensitivity to human faces while our ability
-      to
-      detect and recognize other objects is not as specialized. We add noise to a video with a strength of 0.5T, which
-      is
-      strong enough to erase the identity while preserving other objects and the background scene, and perform denoising
-      using MeDM to obtain the anonymized video. Text conditioning can also be injected to enable a more targeted
-      identity
-      modification. Celebrity videos from <a href="https://celebv-hq.github.io" target="_blank">CelebV-HQ</a>.
+      We leverage the fact that human visual perception exhibits a remarkable sensitivity to human faces while our
+      ability to detect and recognize other objects is not as specialized. We add noise to a video with a strength of
+      0.5T, which is strong enough to erase the identity while preserving other objects and the background scene, and
+      perform denoising using MeDM to obtain the anonymized video. Text conditioning can also be injected to enable a
+      more targeted identity modification. Celebrity videos from
+      <a href="https://celebv-hq.github.io" target="_blank">CelebV-HQ</a>.
     </p>
-    <Gallery :urls="shuffle([
-      '/videos/anonymization/anna-kendrick',
-      '/videos/anonymization/chris-hemsworth',
-      '/videos/anonymization/mark-zuckerberg',
-      '/videos/anonymization/bill-gates',
-      '/videos/anonymization/dicaprio-n-obama',
-    ])" />
+    <ClientOnly fallback-tag="span" fallback="Loading gallery...">
+      <Gallery :urls="shuffle([
+        '/videos/anonymization/anna-kendrick',
+        '/videos/anonymization/chris-hemsworth',
+        '/videos/anonymization/mark-zuckerberg',
+        '/videos/anonymization/bill-gates',
+        '/videos/anonymization/dicaprio-n-obama',
+      ])" />
+    </ClientOnly>
 
   </div>
 </template>
